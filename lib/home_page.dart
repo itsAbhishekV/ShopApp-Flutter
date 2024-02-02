@@ -6,13 +6,44 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    const border = OutlineInputBorder(
+      borderRadius: BorderRadius.horizontal(left: Radius.circular(50)),
+      borderSide: BorderSide(
+        color: Color.fromRGBO(225, 225, 225, 1),
+      ),
+    );
+
     return const Scaffold(
-      body: Center(
-          child: Text('Hello, World',
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-            ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Text('Shoes\nCollection',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+
+                ),),
+              ),
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.search),
+                    border: border,
+                    enabledBorder: border,
+                    focusedBorder: border,
+                    hintText: 'Search',
+                  ),
+                )
+              )
+            ],
           ),
+        ],
+        ),
       )
     );
   }
