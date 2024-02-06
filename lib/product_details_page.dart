@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class ProductDetailsPage extends StatelessWidget {
 
-  final Map<String, Object> product;
+  final Map<String, Object> item;
 
   const ProductDetailsPage({
     super.key,
-    required this.product
+    required this.item,
   });
 
   @override
@@ -14,12 +14,18 @@ class ProductDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Details'),
+        leading: Center(
+          child: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              debugPrint('hiii');
+            }
+          ),
+        ),
       ),
-      body: Column(
-        children: [
-          Text(product['title'] as String),
-        ],
-      ),
+      body: Center(
+        child: Text(item['title'] as String)
+      )
     );
   }
 }
