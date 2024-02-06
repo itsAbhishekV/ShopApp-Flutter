@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ))),
-      home: ProductDetailsPage(item: products[0],),
+      home: const HomePage(),
     );
   }
 }

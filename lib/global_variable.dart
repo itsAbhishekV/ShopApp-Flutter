@@ -3,7 +3,7 @@ final products = [
     'id': '0',
     'title': 'Nike Air Shoes',
     'price': 44.52,
-    'imageUrl': 'assets/images/nike-air-1.png',
+    'imageUrl': 'assets/images/nikes-1.png',
     'company': 'Nike',
     'sizes': [9, 10, 11, 12],
   },

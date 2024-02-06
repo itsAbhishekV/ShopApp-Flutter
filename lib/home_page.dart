@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/global_variable.dart';
 import 'package:shop_app/product_card.dart';
+import 'package:shop_app/product_details_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -100,11 +101,21 @@ class _HomePageState extends State<HomePage> {
                     itemCount: products.length,
                     itemBuilder: (context, index){
                       final item = products[index];
-                      return  ProductCard(
-                          title: item['title'] as String,
-                          price: item['price'] as double,
-                          image: item['imageUrl'] as String,
-                          backgroundColor: index.isEven ? const Color.fromRGBO(216, 240, 253, 1) : const Color.fromRGBO(245, 247, 249, 1),
+                      return  GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) {
+                                return ProductDetailsPage(item: item,);
+                              }
+                          ),
+                          );
+                        },
+                        child: ProductCard(
+                            title: item['title'] as String,
+                            price: item['price'] as double,
+                            image: item['imageUrl'] as String,
+                            backgroundColor: index.isEven ? const Color.fromRGBO(216, 240, 253, 1) : const Color.fromRGBO(245, 247, 249, 1),
+                        ),
                       );
                     }
                 )

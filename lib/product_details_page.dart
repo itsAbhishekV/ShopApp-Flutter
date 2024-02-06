@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/global_variable.dart';
 
-class ProductDetailsPage extends StatelessWidget {
+class ProductDetailsPage extends StatefulWidget {
 
   final Map<String, Object> item;
 
@@ -11,29 +11,37 @@ class ProductDetailsPage extends StatelessWidget {
   });
 
   @override
+  State<ProductDetailsPage> createState() => _ProductDetailsPageState();
+}
+
+class _ProductDetailsPageState extends State<ProductDetailsPage> {
+
+  late int selectedSize;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    selectedSize = 0;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Details'),
-        leading: Center(
-          child: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              debugPrint('hiii');
-            }
           ),
-        ),
-      ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(item['title'] as String,
+            Text(widget.item['title'] as String,
             style: Theme.of(context).textTheme.titleLarge,
             ),
             const Spacer(),
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Image.asset(item['imageUrl'] as String),
+              child: Image.asset(widget.item['imageUrl'] as String),
             ),
             const Spacer(flex: 2),
             Container(
@@ -46,26 +54,49 @@ class ProductDetailsPage extends StatelessWidget {
                 ),
               child: Column(
                 children: [
-                  Text('\$${item['price']}',
+                  Text('\$${widget.item['price']}',
                   style: Theme.of(context).textTheme.titleMedium,),
                   const SizedBox(height: 14,),
                   SizedBox(
                     height: 50,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: (item['sizes'] as List<int>).length,
+                      itemCount: (widget.item['sizes'] as List<int>).length,
                       itemBuilder: (BuildContext context, int index) {
-                        final size = (item['sizes'] as List<int>)[index];
+                        final size = (widget.item['sizes'] as List<int>)[index];
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Chip(
-                              padding: const EdgeInsets.symmetric(horizontal: 10),
-                              label: Text(size.toString()),
+                          child: GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                selectedSize = size;
+                              });
+                            },
+                            child: Chip(
+                                backgroundColor: selectedSize == size ? Theme.of(context).colorScheme.primary : const Color.fromRGBO(245, 247, 249, 1),
+                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                label: Text(size.toString()),
+                            ),
                           ),
                         );
                       },
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: ElevatedButton.icon(
+                        icon: const Icon(Icons.shopping_cart),
+                        onPressed: (){
+                          debugPrint('helllo');
+                    },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(context).colorScheme.primary,
+                          foregroundColor: Colors.black,
+                          minimumSize: const Size(double.infinity, 50),
+                        ),
+                        label: const Text('Add to cart'),
+                    ),
+                  )
                 ]
               ),
               ),
