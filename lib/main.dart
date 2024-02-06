@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
             centerTitle: true,
             titleTextStyle: TextStyle(
               fontSize: 20,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w500,
               color: Colors.black,
             )
           ),
@@ -35,6 +35,10 @@ class MyApp extends StatelessWidget {
             prefixIconColor: Color.fromRGBO(119, 119, 119, 1),
           ),
           textTheme: const TextTheme(
+              titleLarge: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
               titleMedium: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               bodySmall: TextStyle(
                 fontWeight: FontWeight.bold,
