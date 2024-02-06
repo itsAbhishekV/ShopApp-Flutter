@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/global_variable.dart';
+import 'package:shop_app/cart_page.dart';
 import 'package:shop_app/home_page.dart';
-import 'package:shop_app/product_details_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,8 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           fontFamily: 'Poppins',
           colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.amber,
-            primary: Colors.amber,
+            seedColor: Colors.orange,
+            primary: Colors.orange,
           ),
           appBarTheme: const AppBarTheme(
             centerTitle: true,
