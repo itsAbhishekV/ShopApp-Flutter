@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/global_variable.dart';
 
 
 class CartPage extends StatelessWidget {
@@ -10,6 +11,20 @@ class CartPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Cart'),
       ),
+      body: ListView.builder(
+          itemCount: cart.length,
+          itemBuilder: (BuildContext context, int index){
+            final cartItem = cart[index];
+            return ListTile(
+              leading: CircleAvatar(
+
+                backgroundImage: AssetImage(cartItem['imageUrl'] as String),
+              ),
+              title: Text(cartItem['title'] as String),
+              subtitle: Text('Size: ${cartItem['size']}'),
+            );
+          }
+          )
     );
   }
 }

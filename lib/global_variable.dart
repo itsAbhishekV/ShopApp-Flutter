@@ -33,3 +33,14 @@ final products = [
   },
 
 ];
+
+final cart = [
+  {
+    'id': 3,
+    'title': 'Jordan Shoes',
+    'price' : 420.69,
+    'imageUrl': 'assets/images/nike-jordan-1.png',
+    'company': 'Nike',
+    'size': 8
+  }
+];
