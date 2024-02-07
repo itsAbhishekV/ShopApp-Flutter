@@ -37,6 +37,7 @@ class _ProductListState extends State<ProductList> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Column(
         children: [
@@ -96,8 +97,38 @@ class _ProductListState extends State<ProductList> {
                 }
             ),
           ),
+
           Expanded(
-              child: ListView.builder(
+              child: size.width > 600 ?
+                  GridView.builder(
+                      itemCount: products.length,
+
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 1.5,
+                      ),
+                      itemBuilder: (context, index) {
+                        final item = products[index];
+                        return GestureDetector(
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) {
+                                  return ProductDetailsPage(item: item,);
+                                }
+                            ),
+                            );
+                          },
+                          child: ProductCard(
+                            title: item['title'] as String,
+                            price: item['price'] as double,
+                            image: item['imageUrl'] as String,
+                            backgroundColor: index.isEven ? const Color.fromRGBO(216, 240, 253, 1) : const Color.fromRGBO(245, 247, 249, 1),
+                          ),
+                        );
+                      }
+                      )
+                  :
+                ListView.builder(
                   itemCount: products.length,
                   itemBuilder: (context, index){
                     final item = products[index];
