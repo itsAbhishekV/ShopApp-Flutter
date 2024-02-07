@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/global_variable.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_app/cart_provider.dart';
+// import 'package:shop_app/global_variable.dart';
 
 class ProductDetailsPage extends StatefulWidget {
 
@@ -16,13 +18,30 @@ class ProductDetailsPage extends StatefulWidget {
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
 
-  late int selectedSize;
+  late int selectedSize = 0;
+
+  void onTap(){
+    if(selectedSize != 0){
+      Provider.of<CartProvider>(context, listen: false).addProduct(
+          {'id': widget.item['id'],
+            'title': widget.item['title'],
+            'price': widget.item['price'],
+            'imageUrl': widget.item['imageUrl'],
+            'company': widget.item['company'],
+            'size': selectedSize
+          }
+      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${widget.item['title']} added to Cart!')));
+    }
+    else{
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please select a size')));
+    }
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    selectedSize = 0;
   }
 
   @override
@@ -86,9 +105,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     padding: const EdgeInsets.all(16.0),
                     child: ElevatedButton.icon(
                         icon: const Icon(Icons.shopping_cart),
-                        onPressed: (){
-                          debugPrint('helllo');
-                    },
+                        onPressed: onTap,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Theme.of(context).colorScheme.primary,
                           foregroundColor: Colors.black,
