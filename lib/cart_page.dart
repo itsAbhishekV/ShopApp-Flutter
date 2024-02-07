@@ -17,9 +17,12 @@ class CartPage extends StatelessWidget {
             final cartItem = cart[index];
             return ListTile(
               leading: CircleAvatar(
-
                 backgroundImage: AssetImage(cartItem['imageUrl'] as String),
               ),
+              trailing: IconButton(onPressed: (){
+                debugPrint('hiii');
+              },
+              color: Colors.red, icon: const Icon(Icons.delete),),
               title: Text(cartItem['title'] as String),
               subtitle: Text('Size: ${cartItem['size']}'),
             );
