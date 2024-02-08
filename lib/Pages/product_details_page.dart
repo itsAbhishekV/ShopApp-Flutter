@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/cart_provider.dart';
+import 'package:shop_app/Provider/cart_provider.dart';
 // import 'package:shop_app/global_variable.dart';
 
 class ProductDetailsPage extends StatefulWidget {
